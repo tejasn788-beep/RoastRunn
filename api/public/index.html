@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FunAI Vibes 😄</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+    <h1>🎭 FunAI Vibes</h1>
+    <p>Type any topic and get a funny AI meme caption!</p>
+    <input id="text" placeholder="e.g. Monday mornings" style="padding:8px; width:60%;" />
+    <button onclick="generate()">Generate</button>
+    <p id="output" style="margin-top:20px; font-size:18px;"></p>
+
+    <script>
+      async function generate() {
+        const input = document.getElementById("text").value;
+        document.getElementById("output").innerText = "🤖 Thinking...";
+        const res = await fetch(`/api/generate?input=${encodeURIComponent(input)}`);
+        const data = await res.json();
+        document.getElementById("output").innerText = data.result;
+      }
+    </script>
+  </body>
+</html>
